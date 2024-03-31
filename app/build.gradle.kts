@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
+
 }
 
 android {
@@ -39,8 +43,19 @@ android {
 }
 
 dependencies {
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
+    implementation("com.applandeo:material-calendar-view:1.9.0-rc04")
+    //implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+    //Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt ("com.google.dagger:hilt-compiler:2.51")
+    //Room
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp ("androidx.room:room-compiler:2.6.1")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("com.airbnb.android:lottie:6.3.0")
