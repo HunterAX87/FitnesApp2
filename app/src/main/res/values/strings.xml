@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">DrawerLayout</string>
+    <string name="app_name">FitnesApp</string>
+    <string name="slogan">На пути к совершенству</string>
+    <string name="day">День</string>
+    <string name="exercises">Упражнений</string>
+    <string name="waiting_text">Упражнения начнутся через:</string>
+    <string name="start">Начать</string>
+    <string name="next">Следующее</string>
+    <string name="finish">Финиш</string>
+    <string name="complete">Завершить</string>
+    <string name="day_done">День пройден</string>
+    <string name="rest">Осталось:</string>
+    <string name="rest_days">дней</string>
+    <string name="clean">Сбросить прогресс</string>
+    <string name="back">Назад</string>
+    <string name="alert">Внимание!</string>
+    <string name="cancel">Отмена</string>
+    <string name="reset_days_massage">Вы действительно хотите сбросить все дни тренеровки? В таком случае весь прогресс будет потерян!</string>
+    <string name="reset_day_massage">Хотите сбросить этот день и повторить упражнения?</string>
+    <string name="aweqwe">eqweqweqwe</string>
+
 </resources>

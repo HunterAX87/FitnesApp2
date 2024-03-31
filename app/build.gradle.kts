@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.drawerlayout"
+    namespace = "com.example.fitnesapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.drawerlayout"
+        applicationId = "com.example.fitnesapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,7 +40,11 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("com.airbnb.android:lottie:6.3.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

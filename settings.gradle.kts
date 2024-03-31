@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DrawerLayout"
+rootProject.name = "FitnesApp"
 include(":app")
- 
