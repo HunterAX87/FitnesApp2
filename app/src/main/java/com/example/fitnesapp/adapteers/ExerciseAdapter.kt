@@ -21,7 +21,7 @@ class ExerciseAdapter(): ListAdapter<ExercisesModel,ExerciseAdapter.ExerciseHold
             val name= root.context.getString(R.string.day)+ " ${adapterPosition +1}"
             tvName.text= exercise.name
             tvCount.text= exercise.time
-            chB.isChecked= exercise.isDone
+            checkBoxImage1.visibility= if(exercise.isDone) View.VISIBLE else View.INVISIBLE
             imEx.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
 
         }

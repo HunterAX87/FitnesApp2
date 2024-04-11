@@ -9,6 +9,7 @@
     <string name="finish">Финиш</string>
     <string name="complete">Завершить</string>
     <string name="day_done">День пройден</string>
+    <string name="done">Готово</string>
     <string name="rest">Осталось:</string>
     <string name="rest_days">дней</string>
     <string name="clean">Сбросить прогресс</string>
