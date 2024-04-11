@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieDrawable
 import com.example.fitnesapp.databinding.DayFinishBinding
 import com.example.fitnesapp.openFragment
+import com.example.fitnesapp.training.ui.fragments.DaysFragment
 
 
 class DayFinishFragment : Fragment() {
@@ -71,7 +72,7 @@ class DayFinishFragment : Fragment() {
 //                    // Действия при повторе анимации
 //                }
 //            })
-            bDone.setOnClickListener { openFragment(DaysFragment.newInstance()) }
+            //bDone.setOnClickListener { openFragment(DaysFragment.newInstance()) }
         }
     }
 

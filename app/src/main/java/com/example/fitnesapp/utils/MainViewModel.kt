@@ -2,7 +2,7 @@ package com.example.fitnesapp.utils
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.fitnesapp.adapteers.ExercisesModel
+import com.example.fitnesapp.db.ExercisesModel
 
 class MainViewModel: ViewModel() {
     val mutableListExercise= MutableLiveData<ArrayList<ExercisesModel>>()

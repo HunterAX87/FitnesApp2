@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.ExerciseListItemBinding
+import com.example.fitnesapp.db.ExercisesModel
 import pl.droidsonroids.gif.GifDrawable
 
 class ExerciseAdapter(): ListAdapter<ExercisesModel,ExerciseAdapter.ExerciseHolder> (MyComparator()){
@@ -16,11 +17,11 @@ class ExerciseAdapter(): ListAdapter<ExercisesModel,ExerciseAdapter.ExerciseHold
     class ExerciseHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding= ExerciseListItemBinding.bind(view)
 
-        fun setData(exercise:ExercisesModel)= with(binding){
+        fun setData(exercise: ExercisesModel)= with(binding){
             val name= root.context.getString(R.string.day)+ " ${adapterPosition +1}"
             tvName.text= exercise.name
             tvCount.text= exercise.time
-            chB.isChecked= exercise.isDone
+            checkBoxImage1.visibility= if(exercise.isDone) View.VISIBLE else View.INVISIBLE
             imEx.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
 
         }

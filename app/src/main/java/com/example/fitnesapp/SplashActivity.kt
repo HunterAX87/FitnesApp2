@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
-        timer= object :CountDownTimer(7000,1000){
+        timer= object :CountDownTimer(700,1000){
             override fun onTick(millisUntilFinished: Long) {
             }
             override fun onFinish() {

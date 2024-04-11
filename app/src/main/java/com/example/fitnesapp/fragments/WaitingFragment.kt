@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieDrawable
 import com.example.fitnesapp.databinding.WaitingFragmentBinding
+import com.example.fitnesapp.exercises.ui.fragments.ExercisesFragment
 import com.example.fitnesapp.openFragment
 import com.example.fitnesapp.utils.TimeUtils
 
@@ -52,7 +53,7 @@ class WaitingFragment : Fragment() {
             }
 
             override fun onFinish() {
-                openFragment(ExercisesFragment.newInstance())
+
             }
 
         }.start()
