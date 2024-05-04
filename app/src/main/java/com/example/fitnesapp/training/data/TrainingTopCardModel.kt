@@ -1,6 +1,6 @@
 package com.example.fitnesapp.training.data
 
-data class TrainingTopCardModel (
+data class TrainingTopCardModel(
     val imageId: Int,
     val difficultyTitle: Int,
     val maxProgress: Int,

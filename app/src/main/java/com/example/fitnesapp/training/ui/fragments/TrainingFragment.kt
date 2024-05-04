@@ -18,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class TrainingFragment : Fragment() {
     lateinit var binding: FragmentTrainingBinding
-    private val diffLis= listOf(
+    private val diffLis = listOf(
         "easy",
         "middle",
         "hard"
@@ -29,18 +29,18 @@ class TrainingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding=FragmentTrainingBinding.inflate(inflater,container,false)
+        binding = FragmentTrainingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val vpAdapter= VpAdapter(this)
+        val vpAdapter = VpAdapter(this)
         topCardObserver()
-        binding.vp.adapter= vpAdapter
-        TabLayoutMediator(binding.tabLayout, binding.vp){ tab, pos ->
-            tab.text=getString(TrainingUtils.tabTitles[pos])
+        binding.vp.adapter = vpAdapter
+        TabLayoutMediator(binding.tabLayout, binding.vp) { tab, pos ->
+            tab.text = getString(TrainingUtils.tabTitles[pos])
         }.attach()
-        binding.vp.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+        binding.vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 model.getExerciseDaysByDifficulty(
@@ -50,29 +50,29 @@ class TrainingFragment : Fragment() {
         })
     }
 
-    private fun topCardObserver()= with(binding){
-        model.topCardUpdate.observe(viewLifecycleOwner){card->
-            val alphaAnimation= AlphaAnimation(0.8f, 1.0f)
-            alphaAnimation.duration= 700
+    private fun topCardObserver() = with(binding) {
+        model.topCardUpdate.observe(viewLifecycleOwner) { card ->
+            val alphaAnimation = AlphaAnimation(0.8f, 1.0f)
+            alphaAnimation.duration = 700
             imageView.setImageResource(card.imageId)
             imageView.startAnimation(alphaAnimation)
             difficultyTitle.setText(card.difficultyTitle)
-            pB.max= card.maxProgress
+            pB.max = card.maxProgress * 1000
             animProgressBar(card.progress)
-            val daysRestText= getString(R.string.rest)+ " "+ (card.maxProgress- card.progress)
-            tvRestDays.text=daysRestText
+            val daysRestText = getString(R.string.rest) + " " + (card.maxProgress - card.progress)
+            tvRestDays.text = daysRestText
 
         }
     }
 
-    private fun animProgressBar(progress:Int){
-        val anim=ObjectAnimator.ofInt(
+    private fun animProgressBar(progress: Int) {
+        val anim = ObjectAnimator.ofInt(
             binding.pB,
             "progress",
             binding.pB.progress,
-            progress * 100
+            progress * 1000
         )
-        anim.duration= 700
+        anim.duration = 700
         anim.start()
     }
 }

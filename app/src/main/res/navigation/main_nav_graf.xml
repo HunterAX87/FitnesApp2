@@ -17,7 +17,11 @@
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.fitnesapp.exercises.ui.fragments.ExercisesFragment"
-        android:label="ExercisesFragment" />
+        android:label="ExercisesFragment" >
+        <action
+            android:id="@+id/action_exercisesFragment_to_dayFinishFragment"
+            app:destination="@id/dayFinishFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exercisesListFragment"
         android:name="com.example.fitnesapp.exercises.ui.fragments.ExercisesListFragment"
@@ -26,4 +30,18 @@
             android:id="@+id/action_exercisesListFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/dayFinishFragment"
+        android:name="com.example.fitnesapp.fragments.DayFinishFragment"
+        android:label="DayFinishFragment" />
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.example.fitnesapp.statistic.presenter.StatisticFragment"
+        android:label="fragment_statistic"
+        tools:layout="@layout/fragment_statistic" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fitnesapp.settings.presenter.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

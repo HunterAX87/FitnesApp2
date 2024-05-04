@@ -6,20 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
+import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.DayFinishBinding
 import com.example.fitnesapp.openFragment
 import com.example.fitnesapp.training.ui.fragments.DaysFragment
 
 
 class DayFinishFragment : Fragment() {
-  lateinit var binding: DayFinishBinding
+    lateinit var binding: DayFinishBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding=DayFinishBinding.inflate(inflater, container,false)
+        binding = DayFinishBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,10 +33,10 @@ class DayFinishFragment : Fragment() {
 
             congratAnim.setMinProgress(0.0f)
             congratAnim.setMaxProgress(1.0f)
-            congratAnim.repeatCount= ValueAnimator.INFINITE
-            congratAnim.repeatMode= LottieDrawable.RESTART
+            congratAnim.repeatCount = ValueAnimator.INFINITE
+            congratAnim.repeatMode = LottieDrawable.RESTART
             congratAnim.playAnimation()
-            congratAnim.speed=0.6f
+            congratAnim.speed = 0.6f
 
 
 
@@ -46,7 +48,7 @@ class DayFinishFragment : Fragment() {
             congratAnim2.playAnimation()
             congratAnim2.speed = 0.7f
 
-        //кейс кода для удаления первой анимации и для включения второй с помощью AnimatorListener
+            //кейс кода для удаления первой анимации и для включения второй с помощью AnimatorListener
 //            congratAnim.addAnimatorListener(object : Animator.AnimatorListener {
 //                override fun onAnimationStart(animation: Animator) {
 //                    // Действия при старте анимации
@@ -72,7 +74,12 @@ class DayFinishFragment : Fragment() {
 //                    // Действия при повторе анимации
 //                }
 //            })
-            //bDone.setOnClickListener { openFragment(DaysFragment.newInstance()) }
+            bDone.setOnClickListener {
+                findNavController().popBackStack(
+                    R.id.trainingFragment,
+                    inclusive = false
+                )
+            }
         }
     }
 

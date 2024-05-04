@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:tabIndicatorColor="@color/salatoviy"
+        app:tabIndicatorColor="@color/blue"
         app:tabTextColor="@drawable/tab_bar_state_list">
 
         <com.google.android.material.tabs.TabItem

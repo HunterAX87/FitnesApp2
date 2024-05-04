@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/trainingFragment"
+        android:title="Training"
+        android:icon="@drawable/training"/>
+
+    <item
+        android:id="@+id/statisticFragment"
+        android:title="Statistic"
+        android:icon="@drawable/statistic"/>
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
+
+</menu>

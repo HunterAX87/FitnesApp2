@@ -63,13 +63,13 @@ var currentFragment:Fragment?= null
 //        .replace(R.id.placeHolder, newFragment)
 //        .commit()
 //    currentFragment= newFragment
-//
 //}
+
 fun Fragment.openFragment(newFragment: Fragment) {
     val transaction = (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
     transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
     transaction.replace(R.id.placeHolder, newFragment)
-  //  transaction.addToBackStack(null) // Добавляем транзакцию в стек возврата
+    //  transaction.addToBackStack(null) // Добавляем транзакцию в стек возврата
     transaction.commit()
 }
 

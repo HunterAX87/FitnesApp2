@@ -8,12 +8,15 @@ import javax.inject.Inject
 @ViewModelScoped
 class ExerciseHelper @Inject constructor() {
 
-    fun getExercisesOfTheDay ( exerciseIndexes: String, list: List<ExercisesModel> ): List<ExercisesModel> {
+    fun getExercisesOfTheDay(
+        exerciseIndexes: String,
+        list: List<ExercisesModel>
+    ): List<ExercisesModel> {
 
-        val exerciseIndexesArray= exerciseIndexes.split(",")
-        val tempList= ArrayList<ExercisesModel>()
+        val exerciseIndexesArray = exerciseIndexes.split(",")
+        val tempList = ArrayList<ExercisesModel>()
 
-        for (i in exerciseIndexesArray.indices){
+        for (i in exerciseIndexesArray.indices) {
             tempList.add(
                 list[exerciseIndexesArray[i].toInt()]
             )
@@ -21,37 +24,35 @@ class ExerciseHelper @Inject constructor() {
         return tempList
     }
 
-    fun createExerciseStack(list: List<ExercisesModel>): List<ExercisesModel>{
-        val tempList= ArrayList<ExercisesModel>()
-        list.forEach{
+    fun createExerciseStack(list: List<ExercisesModel>): List<ExercisesModel> {
+        val tempList = ArrayList<ExercisesModel>()
+        list.forEach {
 
             tempList.add(
                 it.copy(
-                    time= "10",
-                    subTitle = "Relax"
+                    time = "10",
+                    subTitle = "Relax. Next Exercise is."
                 )
             )
 
             tempList.add(
                 it.copy(
 
-                    subTitle = "Start"
+                    subTitle = "Start doing the exercise."
                 )
             )
-
-//            tempList.add(
-//                ExercisesModel(
-//                    null,
-//                    "Nice training",
-//                    "Exercise day finish",
-//                    "",
-//                    "relax1.gif",
-//                    false,
-//                    0
-//                )
-//            )
         }
+        tempList.add(
+            ExercisesModel(
+                null,
+                "Nice training",
+                "Exercise day finish",
+                "",
+                "done.gif",
+                false,
+                0
+            )
+        )
         return tempList
     }
-
 }

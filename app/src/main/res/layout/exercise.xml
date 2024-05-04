@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor">
@@ -30,20 +31,21 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="22dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="32dp"
         android:progress="0"
         android:progressBackgroundTint="@color/gray"
         android:progressTint="@color/salatoviy"
         app:layout_constraintBottom_toTopOf="@+id/tvName"
         app:layout_constraintEnd_toEndOf="@+id/bNext"
-        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="@+id/bNext" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="52dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/white"

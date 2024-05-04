@@ -7,6 +7,7 @@ import com.example.fitnesapp.db.DayModel
 import com.example.fitnesapp.db.MainDb
 import com.example.fitnesapp.training.data.TrainingTopCardModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,13 +33,22 @@ class DaysViewModel @Inject constructor(
         }
     }
 
-    private fun getProgress(list: List<DayModel>):Int{
-        var counter= 0
+    private fun getProgress(list: List<DayModel>): Int {
+        var counter = 0
         list.forEach { day ->
-            if(day.isDone){
+            if (day.isDone) {
                 counter++
             }
         }
         return counter
+    }
+
+    fun resetSelectedDay(day: DayModel) = viewModelScope.launch {
+        mainDb.daysDao.insertDay(
+            day.copy(
+                doneExerciseCounter = 0,
+                isDone = false
+            )
+        )
     }
 }

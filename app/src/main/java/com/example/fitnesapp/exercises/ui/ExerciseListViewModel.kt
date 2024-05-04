@@ -16,33 +16,43 @@ import javax.inject.Inject
 class ExerciseListViewModel @Inject constructor(
     private val mainDb: MainDb
 ) : ViewModel() {
-    val exerciseList= MutableLiveData<List<ExercisesModel>>()
+    val exerciseList = MutableLiveData<List<ExercisesModel>>()
     val topCardUpdate = MutableLiveData<TrainingTopCardModel>()
 
-    fun getDayExrciseList(dayModel: DayModel?)= viewModelScope.launch{
-        val day= dayModel?.id?.let {
+    fun getDayExrciseList(dayModel: DayModel?) = viewModelScope.launch {
+        val day = dayModel?.id?.let {
             mainDb.daysDao.getDayById(it)
         }
         if (day != null) {
             getTopCardData(day)
         }
-        val allExerciseList= mainDb.exerciseDao.getAllExercises()
-        val tempExerciseList=ArrayList<ExercisesModel>()
-        day?.let {dayModel ->
-            dayModel.exercises.split(",").forEach{ index->
+        val allExerciseList = mainDb.exerciseDao.getAllExercises()
+        val tempExerciseList = ArrayList<ExercisesModel>()
+        day?.let { dayModel ->
+            dayModel.exercises.split(",").forEach { index ->
                 tempExerciseList.add(allExerciseList[index.toInt()])
             }
-            exerciseList.value=tempExerciseList
+
+            for (i in 0 until dayModel.doneExerciseCounter) {
+                tempExerciseList[i] = tempExerciseList[i].copy(isDone = true)
+            }
+
+            exerciseList.value = tempExerciseList
         }
     }
 
-    fun getTopCardData(dayModel: DayModel){
-        var index=0
-        when (dayModel.difficulty){
-            "middle" ->{ index=1}
-            "hard" ->{ index=2}
+    fun getTopCardData(dayModel: DayModel) {
+        var index = 0
+        when (dayModel.difficulty) {
+            "middle" -> {
+                index = 1
+            }
+
+            "hard" -> {
+                index = 2
+            }
         }
-        topCardUpdate.value=TrainingUtils.topCardList[index].copy(
+        topCardUpdate.value = TrainingUtils.topCardList[index].copy(
             progress = dayModel.doneExerciseCounter,
             maxProgress = dayModel.exercises.split(",").size
         )
