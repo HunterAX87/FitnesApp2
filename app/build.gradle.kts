@@ -43,12 +43,18 @@ android {
 }
 
 dependencies {
+    //for LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+
+    //Calendar
+    implementation("com.applandeo:material-calendar-view:1.9.0-rc04")
+
+    //Schedule Graf
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-
-    implementation("com.applandeo:material-calendar-view:1.9.0-rc04")
-    //implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     //Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.51")

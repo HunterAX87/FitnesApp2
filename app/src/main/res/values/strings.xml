@@ -17,8 +17,16 @@
     <string name="back">Назад</string>
     <string name="alert">Внимание!</string>
     <string name="cancel">Отмена</string>
-    <string name="reset_days_massage">Вы действительно хотите сбросить все дни тренеровки? В таком случае весь прогресс будет потерян!</string>
+    <string name="a_reset_all_data">Вы действительно хотите сбросить весь прогрессвключая историю весов и стастику? В таком случае вы их больше не восстановите!</string>
+    <string name="a_reset_progress">Вы действительно хотите сбросить весь прогресс выполненных упражнений? В таком случае вы потеряете весь прогресс!</string>
+    <string name="a_reset_weight">Вы действительно хотите сбросить всю историю весов? В таком случае вы потеряете всю историю всов</string>
+    <string name="a_reset_statistic">Вы действительно хотите сбросить всю стастику? В таком случае вы их больше не восстановите!</string>
     <string name="reset_day_massage">Хотите сбросить этот день и повторить упражнения?</string>
+    <string name="b_reset_progress">Reset progress</string>
+    <string name="b_reset_weight">Reset weight</string>
+    <string name="b_reset_statistic">Reset statistic</string>
+    <string name="b_reset_all_data">Reset all data</string>
+
     <string name="easy">Easy</string>
     <string name="middle">Midle</string>
     <string name="hard">Hard</string>

@@ -17,4 +17,7 @@ interface DaysDao {
 
     @Query("SELECT * FROM day_model_table WHERE  difficulty=:difficulty")
     fun getAllDaysByDifficulty(difficulty:String): Flow<List<DayModel>>
+
+    @Query("SELECT * FROM day_model_table")
+    suspend fun getAllDays(): List<DayModel>
 }

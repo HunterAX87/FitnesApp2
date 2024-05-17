@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
@@ -48,32 +49,6 @@ class DayFinishFragment : Fragment() {
             congratAnim2.playAnimation()
             congratAnim2.speed = 0.7f
 
-            //кейс кода для удаления первой анимации и для включения второй с помощью AnimatorListener
-//            congratAnim.addAnimatorListener(object : Animator.AnimatorListener {
-//                override fun onAnimationStart(animation: Animator) {
-//                    // Действия при старте анимации
-//                }
-//
-//                override fun onAnimationEnd(animation: Animator) {
-//                    congratAnim.visibility = View.INVISIBLE
-//                    // Запуск второй анимации после завершения первой
-//                    congratAnim2.visibility = View.VISIBLE
-//                    congratAnim2.setMinProgress(0.0f)
-//                    congratAnim2.setMaxProgress(1.0f)
-//                    congratAnim2.repeatCount = 0
-//                    congratAnim2.repeatMode = LottieDrawable.RESTART
-//                    congratAnim2.playAnimation()
-//                    congratAnim2.speed = 0.7f
-//                }
-//
-//                override fun onAnimationCancel(animation: Animator) {
-//                    // Действия при отмене анимации
-//                }
-//
-//                override fun onAnimationRepeat(animation: Animator) {
-//                    // Действия при повторе анимации
-//                }
-//            })
             bDone.setOnClickListener {
                 findNavController().popBackStack(
                     R.id.trainingFragment,
@@ -81,6 +56,15 @@ class DayFinishFragment : Fragment() {
                 )
             }
         }
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
+            findNavController().popBackStack(
+                R.id.trainingFragment,
+                inclusive = false
+            )
+        }
+
     }
 
     companion object {
