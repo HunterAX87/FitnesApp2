@@ -19,29 +19,32 @@ class ExerciseListViewModel @Inject constructor(
     val exerciseList = MutableLiveData<List<ExercisesModel>>()
     val topCardUpdate = MutableLiveData<TrainingTopCardModel>()
 
-    fun getDayExrciseList(dayModel: DayModel?) = viewModelScope.launch {
+    fun getDayExerciseList(dayModel: DayModel?) = viewModelScope.launch {
         val day = dayModel?.id?.let {
             mainDb.daysDao.getDayById(it)
         }
         if (day != null) {
             getTopCardData(day)
         }
-        val allExerciseList = mainDb.exerciseDao.getAllExercises()
+        val allExercisesList = mainDb.exerciseDao.getAllExercises()
         val tempExerciseList = ArrayList<ExercisesModel>()
         day?.let { dayModel ->
-            dayModel.exercises.split(",").forEach { index ->
-                tempExerciseList.add(allExerciseList[index.toInt()])
+            dayModel.exercises.split(",").forEach { id ->
+                if (id.isEmpty()) return@forEach
+                tempExerciseList.add(
+                    allExercisesList.filter {
+                        it.id == id.toInt()
+                    }[0]
+                )
             }
-
             for (i in 0 until dayModel.doneExerciseCounter) {
                 tempExerciseList[i] = tempExerciseList[i].copy(isDone = true)
             }
-
             exerciseList.value = tempExerciseList
         }
     }
 
-    fun getTopCardData(dayModel: DayModel) {
+    private fun getTopCardData(dayModel: DayModel) {
         var index = 0
         when (dayModel.difficulty) {
             "middle" -> {

@@ -11,37 +11,41 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val mainDb: MainDb
-): ViewModel() {
+) : ViewModel() {
     private lateinit var dayList: ArrayList<DayModel>
 
-    fun clearAllData()= viewModelScope.launch {
-        dayList= mainDb.daysDao.getAllDays() as ArrayList<DayModel>
-        dayList.forEach{
-            mainDb.daysDao.insertDay(it.copy(
-                doneExerciseCounter = 0,
-                isDone = false
-            ))
+    fun clearAllData() = viewModelScope.launch {
+        dayList = mainDb.daysDao.getAllDays() as ArrayList<DayModel>
+        dayList.forEach {
+            mainDb.daysDao.insertDay(
+                it.copy(
+                    doneExerciseCounter = 0,
+                    isDone = false
+                )
+            )
         }
 
         clearWeight()
         mainDb.statisticDao.clearStatistic()
     }
 
-    fun clearProgress()= viewModelScope.launch {
-        dayList= mainDb.daysDao.getAllDays() as ArrayList<DayModel>
-        dayList.forEach{
-            mainDb.daysDao.insertDay(it.copy(
-                doneExerciseCounter = 0,
-                isDone = false
-            ))
+    fun clearProgress() = viewModelScope.launch {
+        dayList = mainDb.daysDao.getAllDays() as ArrayList<DayModel>
+        dayList.forEach {
+            mainDb.daysDao.insertDay(
+                it.copy(
+                    doneExerciseCounter = 0,
+                    isDone = false
+                )
+            )
         }
     }
 
-    fun clearWeight()= viewModelScope.launch {
+    fun clearWeight() = viewModelScope.launch {
         mainDb.weightDao.clearWeight()
     }
 
-    fun clearStatistic()= viewModelScope.launch {
+    fun clearStatistic() = viewModelScope.launch {
         mainDb.statisticDao.clearStatistic()
     }
 }

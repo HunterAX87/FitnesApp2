@@ -64,6 +64,7 @@ dependencies {
     ksp ("androidx.room:room-compiler:2.6.1")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("com.airbnb.android:lottie:3.4.0")
     implementation("com.airbnb.android:lottie:6.3.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

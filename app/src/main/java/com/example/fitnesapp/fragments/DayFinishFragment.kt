@@ -11,8 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.DayFinishBinding
-import com.example.fitnesapp.openFragment
-import com.example.fitnesapp.training.ui.fragments.DaysFragment
 
 
 class DayFinishFragment : Fragment() {
@@ -58,7 +56,7 @@ class DayFinishFragment : Fragment() {
         }
 
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().popBackStack(
                 R.id.trainingFragment,
                 inclusive = false

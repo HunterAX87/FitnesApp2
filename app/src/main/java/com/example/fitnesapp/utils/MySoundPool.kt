@@ -15,7 +15,7 @@ class MySoundPool(private val context: Context) {
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
 
-        soundPool= SoundPool.Builder()
+        soundPool = SoundPool.Builder()
             .setAudioAttributes(audioAttributes)
             .setMaxStreams(1)
             .build()
@@ -23,16 +23,18 @@ class MySoundPool(private val context: Context) {
         loadSound()
     }
 
-    private fun loadSound(){
-        finishSoundId= soundPool?.load(context, R.raw.finish_exercise, 1) ?:0
+    private fun loadSound() {
+        finishSoundId = soundPool?.load(context, R.raw.finish_exercise, 1) ?: 0
     }
 
-    fun playSound(){
-        soundPool?.play(finishSoundId,
+    fun playSound() {
+        soundPool?.play(
+            finishSoundId,
             1.0f,
             1.0f,
             1,
             0,
-            1.0f)
+            1.0f
+        )
     }
 }

@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.fitnesapp.db.DayModel
 import com.example.fitnesapp.db.MainDb
 import com.example.fitnesapp.training.data.TrainingTopCardModel
+import com.example.fitnesapp.training.utils.TrainingUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +18,8 @@ class DaysViewModel @Inject constructor(
 
     val daysList = MutableLiveData<List<DayModel>>()
     val topCardUpdate = MutableLiveData<TrainingTopCardModel>()
+    val isCustomListEmpty = MutableLiveData<Boolean>()
+
 
     fun getExerciseDaysByDifficulty(trainingTopCardModel: TrainingTopCardModel) {
         //Coroutine
@@ -30,6 +32,12 @@ class DaysViewModel @Inject constructor(
                         progress = getProgress(list)
                     )
                 }
+        }
+    }
+
+    fun getCustomDayList() = viewModelScope.launch {
+        mainDb.daysDao.getAllDaysByDifficulty(TrainingUtils.CUSTOM).collect {
+            isCustomListEmpty.value = it.isEmpty()
         }
     }
 

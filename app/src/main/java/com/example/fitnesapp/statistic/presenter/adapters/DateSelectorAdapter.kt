@@ -20,7 +20,7 @@ class DateSelectorAdapter(private val listener: Listener) :
         fun bind(dateSelectorModel: DateSelectorModel) = with(binding) {
             item.text = dateSelectorModel.text
 
-            if (dateSelectorModel.isSelected){
+            if (dateSelectorModel.isSelected) {
                 item.setTextColor(Color.WHITE)
                 item.setBackgroundResource(R.drawable.date_selected)
             } else {
@@ -28,7 +28,7 @@ class DateSelectorAdapter(private val listener: Listener) :
                 item.setBackgroundResource(R.drawable.date_not_selected)
             }
 
-            item.setOnClickListener{
+            item.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
         }

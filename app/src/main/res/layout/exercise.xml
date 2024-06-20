@@ -12,11 +12,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="33dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintBottom_toTopOf="@+id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -33,19 +34,20 @@
         android:layout_height="22dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="304dp"
         android:progress="0"
         android:progressBackgroundTint="@color/gray"
         android:progressTint="@color/salatoviy"
-        app:layout_constraintBottom_toTopOf="@+id/tvName"
+        app:layout_constraintBottom_toBottomOf="@+id/bNext"
         app:layout_constraintEnd_toEndOf="@+id/bNext"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="@+id/bNext" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/white"
@@ -61,7 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginBottom="111dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="90dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/white"
@@ -69,7 +72,9 @@
         app:layout_constraintBottom_toTopOf="@+id/tvTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.18" />
 
     <TextView
         android:id="@+id/tvTime"
@@ -93,6 +98,7 @@
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/kislotniy"
+        android:clickable="true"
         android:padding="15dp"
         android:text="@string/next"
         android:textColor="#000000"

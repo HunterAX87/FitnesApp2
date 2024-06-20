@@ -4,30 +4,33 @@ import com.example.fitnesapp.R
 import com.example.fitnesapp.training.data.TrainingTopCardModel
 
 object TrainingUtils {
-    const val EASY="easy"
-    const val MIDDLE="middle"
-    const val HARD="hard"
+    const val EASY = "easy"
+    const val MIDDLE = "middle"
+    const val HARD = "hard"
+    const val CUSTOM = "custom"
 
-    val difListType= listOf(
+    val difListType = listOf(
         EASY,
         MIDDLE,
-        HARD
+        HARD,
+        CUSTOM
     )
 
-    val tabTitles= listOf(
+    val tabTitles = listOf(
         R.string.easy,
         R.string.middle,
-        R.string.hard
+        R.string.hard,
+        R.string.custom
     )
 
-    val topCardList= listOf(
+    val topCardList = listOf(
 
         TrainingTopCardModel(
             R.drawable.easy,
             R.string.easy,
             0,
             0,
-            "easy"
+            EASY
         ),
 
         TrainingTopCardModel(
@@ -35,7 +38,7 @@ object TrainingUtils {
             R.string.middle,
             0,
             0,
-            "middle"
+            MIDDLE
         ),
 
         TrainingTopCardModel(
@@ -43,7 +46,15 @@ object TrainingUtils {
             R.string.hard,
             0,
             0,
-            "hard"
+            HARD
+        ),
+
+        TrainingTopCardModel(
+            R.drawable.custom1,
+            R.string.custom,
+            0,
+            0,
+            CUSTOM
         )
     )
 }

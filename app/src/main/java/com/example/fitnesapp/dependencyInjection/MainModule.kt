@@ -1,7 +1,6 @@
 package com.example.fitnesapp.dependencyInjection
 
 import android.app.Application
-import android.media.SoundPool
 import android.speech.tts.TextToSpeech
 import androidx.room.Room
 import com.example.fitnesapp.db.MainDb

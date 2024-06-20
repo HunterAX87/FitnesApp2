@@ -2,12 +2,11 @@ package com.example.fitnesapp.statistic.presenter
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.applandeo.materialcalendarview.EventDay
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener
@@ -19,20 +18,22 @@ import com.example.fitnesapp.statistic.presenter.adapters.DateSelectorAdapter
 import com.example.fitnesapp.statistic.utils.UtilsArray
 import com.example.fitnesapp.utils.DialogManager
 import com.example.fitnesapp.utils.TimeUtils
-import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Calendar
 
 @AndroidEntryPoint
-class StatisticFragment : Fragment() {
+class StatisticFragment : Fragment(), OnChartValueSelectedListener {
 
+    private var currentWeihgtList: List<WeightModel>? = null
     private lateinit var yearAdapter: DateSelectorAdapter
     private lateinit var monthAdapter: DateSelectorAdapter
     private var _binding: FragmentStatisticBinding? = null
@@ -56,10 +57,13 @@ class StatisticFragment : Fragment() {
                     override fun onClick(weight: String) {
                         if (weight.isEmpty()) {
                             Toast.makeText(
-                                requireContext(), "Weight field is Empty!", Toast.LENGTH_SHORT
+                                requireContext(),
+                                "${context?.getString(R.string.weight_field_is_empty)}",
+                                Toast.LENGTH_SHORT
                             ).show()
+                        } else {
+                            model.saveWeight(weight.toFloat().toInt())
                         }
-                        model.saveWeight(weight.toFloat().toInt())
                     }
 
                 }
@@ -79,7 +83,7 @@ class StatisticFragment : Fragment() {
 
     private fun observeYearList() {
         model.yearListData.observe(viewLifecycleOwner) {
-            if(it.isEmpty()) return@observe
+            if (it.isEmpty()) return@observe
             val yearTemp = ArrayList<DateSelectorModel>(it)
             yearTemp[yearTemp.size - 1] = yearTemp[yearTemp.size - 1].copy(isSelected = true)
             model.year = yearTemp[yearTemp.size - 1].text.toInt()
@@ -105,15 +109,15 @@ class StatisticFragment : Fragment() {
         dateWeightSelector.yearRcView.adapter = yearAdapter
         dateWeightSelector.monthRcView.adapter = monthAdapter
 
-        val cv = Calendar.getInstance()
         val monthTemp = ArrayList<DateSelectorModel>(UtilsArray.monthList)
-        monthTemp[cv.get(Calendar.MONTH)] =
-            monthTemp[cv.get(Calendar.MONTH)].copy(isSelected = true)
+        monthTemp[model.month] =
+            monthTemp[model.month].copy(isSelected = true)
         monthAdapter.submitList(monthTemp)
     }
 
     private fun weightListObserver() {
         model.weightListData.observe(viewLifecycleOwner) { list ->
+            currentWeihgtList = list
             setChartData(list)
         }
     }
@@ -154,7 +158,7 @@ class StatisticFragment : Fragment() {
                 )
                 kcal.text = it.kcal.toString()
                 date.text = if (TimeUtils.getCurrentDate() == it.date) {
-                    "Today"
+                    context?.getString(R.string.today)
                 } else {
                     it.date
                 }
@@ -203,7 +207,7 @@ class StatisticFragment : Fragment() {
     }
 
     private fun barChartSettings() = with(binding) {
-
+        barChart.setOnChartValueSelectedListener(this@StatisticFragment)
         barChart.description.isEnabled = false
         barChart.legend.apply {
             horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
@@ -222,6 +226,45 @@ class StatisticFragment : Fragment() {
                     return (value + 1).toInt().toString()
                 }
             }
+        }
+    }
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        val dayNumber = ((e as BarEntry).x + 1).toInt()
+        val weightModel = getWeightModelByDay(dayNumber)
+
+        if (weightModel == null) {
+            Toast.makeText(
+                requireContext(),
+                context?.getString(R.string.day_not_found),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        DialogManager.showWeightDialog(
+            requireContext(),
+            object : DialogManager.WeightListener {
+                override fun onClick(weight: String) {
+                    model.updateWeight(weightModel.copy(weight = weight.toInt()))
+                }
+
+            },
+            weightModel.weight.toString()
+        )
+    }
+
+    override fun onNothingSelected() {}
+
+    private fun getWeightModelByDay(day: Int): WeightModel? {
+        val dayList = currentWeihgtList?.filter {
+            it.day == day
+        } ?: return null
+
+        return if (dayList.isEmpty()) {
+            null
+        } else {
+            dayList[0]
         }
     }
 }

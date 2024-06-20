@@ -5,7 +5,6 @@ import android.speech.tts.TextToSpeech
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.airbnb.lottie.utils.Utils
 import com.example.fitnesapp.db.DayModel
 import com.example.fitnesapp.db.ExercisesModel
 import com.example.fitnesapp.db.MainDb
@@ -50,22 +49,22 @@ class ExerciseViewModel @Inject constructor(
     }
 
 
-    private fun getStatistic() = viewModelScope.launch{
-        val currentDate= TimeUtils.getCurrentDate()
-        statisticModel= mainDb.statisticDao.getStatisticByDate(currentDate)
+    private fun getStatistic() = viewModelScope.launch {
+        val currentDate = TimeUtils.getCurrentDate()
+        statisticModel = mainDb.statisticDao.getStatisticByDate(currentDate)
     }
 
-    private fun createStatistic(): StatisticModel{
-        var kcal= 0
-        var time= 0
+    private fun createStatistic(): StatisticModel {
+        var kcal = 0
+        var time = 0
 
-        exercisesOfTheDay.subList(0,doneExerciseCounterToSave - 1).forEach{
-            kcal +=it.kCal
+        exercisesOfTheDay.subList(0, doneExerciseCounterToSave - 1).forEach {
+            kcal += it.kCal
             time += getTimeFromExercise(it)
         }
 
         return statisticModel?.copy(
-            kcal= kcal,
+            kcal = kcal,
             workautTime = time.toString()
         ) ?: StatisticModel(
             null,
@@ -75,9 +74,9 @@ class ExerciseViewModel @Inject constructor(
         )
     }
 
-    private fun getTimeFromExercise(exercisesModel: ExercisesModel): Int{
-        return if (exercisesModel.time.startsWith("x")){
-            exercisesModel.time.replace("x", "").toInt() *2
+    private fun getTimeFromExercise(exercisesModel: ExercisesModel): Int {
+        return if (exercisesModel.time.startsWith("x")) {
+            exercisesModel.time.replace("x", "").toInt() * 2
         } else {
             exercisesModel.time.toInt()
         }
@@ -167,7 +166,7 @@ class ExerciseViewModel @Inject constructor(
         } else {
             if (!exercisesModel.time.startsWith("")) {
                 "${exercisesModel.time} seconds"
-            } else{
+            } else {
                 ""
             }
         }

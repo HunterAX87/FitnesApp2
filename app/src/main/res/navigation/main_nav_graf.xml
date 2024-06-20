@@ -27,8 +27,8 @@
         android:name="com.example.fitnesapp.exercises.ui.fragments.ExercisesListFragment"
         android:label="ExercisesListFragment" >
         <action
-            android:id="@+id/action_exercisesListFragment_to_exercisesFragment"
-            app:destination="@id/exercisesFragment" />
+            android:id="@+id/action_exercisesListFragment_to_waitingFragment"
+            app:destination="@id/waitingFragment" />
     </fragment>
     <fragment
         android:id="@+id/dayFinishFragment"
@@ -46,7 +46,25 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/customDaysListFragment"
-        android:name="com.example.fitnesapp.custom_training.presenter.CustomDaysListFragment"
+        android:name="com.example.fitnesapp.custom_training.day_list.presenter.CustomDaysListFragment"
         android:label="fragment_custom_days_list"
         tools:layout="@layout/fragment_custom_days_list" />
+    <fragment
+        android:id="@+id/selectedExerciseListFragment"
+        android:name="com.example.fitnesapp.custom_training.selected_exercise_list.presenter.SelectedExerciseListFragment"
+        android:label="fragment_selected_exercise_list"
+        tools:layout="@layout/fragment_selected_exercise_list" />
+    <fragment
+        android:id="@+id/chooseExercisesFragment"
+        android:name="com.example.fitnesapp.custom_training.choose_exercises.presenter.ChooseExercisesFragment"
+        android:label="fragment_choose_exercises"
+        tools:layout="@layout/fragment_choose_exercises" />
+    <fragment
+        android:id="@+id/waitingFragment"
+        android:name="com.example.fitnesapp.fragments.WaitingFragment"
+        android:label="WaitingFragment" >
+        <action
+            android:id="@+id/action_waitingFragment_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
 </navigation>

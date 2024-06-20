@@ -40,7 +40,7 @@ class ExercisesListFragment : Fragment() {
         topCardobserver()
         init()
         exerciseListObserver()
-        model.getDayExrciseList(dayModel)
+        model.getDayExerciseList(dayModel)
 
     }
 
@@ -53,7 +53,7 @@ class ExercisesListFragment : Fragment() {
                 putSerializable("day", dayModel)
             }
             findNavController().navigate(
-                R.id.action_exercisesListFragment_to_exercisesFragment,
+                R.id.action_exercisesListFragment_to_waitingFragment,
                 bundle
             )
 

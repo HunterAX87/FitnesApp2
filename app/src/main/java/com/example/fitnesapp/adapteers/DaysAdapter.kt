@@ -40,11 +40,13 @@ class DaysAdapter(var listener: Listener) :
         }
 
         private fun getExerciseProgress(day: DayModel, context: Context): String {
+            if (day.exercises.isEmpty()) return "0 ${context.getString(R.string.exercises)}"
             val totalExersise = day.exercises.split(",").size
             return if (day.isDone) {
                 context.getString(R.string.completed)
             } else {
-                "$totalExersise " + context.getString(R.string.exercises) +
+                "$totalExersise " +
+                        context.getString(R.string.exercises) +
                         " | Progress: " + ((day.doneExerciseCounter * 100) / totalExersise) +
                         "%"
             }

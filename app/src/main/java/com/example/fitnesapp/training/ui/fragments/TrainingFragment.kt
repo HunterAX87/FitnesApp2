@@ -34,8 +34,24 @@ class TrainingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val vpAdapter = VpAdapter(this)
         topCardObserver()
+        isCustomTrainingEmpty()
+        model.getCustomDayList()
+    }
+
+    private fun isCustomTrainingEmpty() {
+        model.isCustomListEmpty.observe(viewLifecycleOwner) {
+            val index = if (it) {
+                1
+            } else {
+                0
+            }
+            initVpAdapter(index)
+        }
+    }
+
+    private fun initVpAdapter(index: Int) {
+        val vpAdapter = VpAdapter(this, index)
         binding.vp.adapter = vpAdapter
         TabLayoutMediator(binding.tabLayout, binding.vp) { tab, pos ->
             tab.text = getString(TrainingUtils.tabTitles[pos])

@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -46,20 +47,26 @@ class ExercisesFragment : Fragment() {
         }
 
         binding.bNext.setOnClickListener {
-            if (binding.bNext.text.toString() == getString(R.string.done)){
+            if (binding.bNext.text.toString() == getString(R.string.done)) {
                 findNavController().navigate(
                     R.id.action_exercisesFragment_to_dayFinishFragment
                 )
             } else {
                 model.nextExercise()
-                binding.progressBar.progress = 0
             }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().popBackStack(
+                R.id.exercisesListFragment,
+                inclusive = false
+            )
         }
     }
 
-    private fun updateTvCount(){
-        model.updataTvCount.observe(viewLifecycleOwner){
-            binding.tvCount.text=it
+    private fun updateTvCount() {
+        model.updataTvCount.observe(viewLifecycleOwner) {
+            binding.tvCount.text = it
         }
     }
 
@@ -76,8 +83,8 @@ class ExercisesFragment : Fragment() {
         }
     }
 
-    private fun changeBottonText(title: String){
-        if (title== "Nice training") binding.bNext.text= getString(R.string.done)
+    private fun changeBottonText(title: String) {
+        if (title == "Nice training") binding.bNext.text = getString(R.string.done)
     }
 
     private fun updataTime() = with(binding) {
@@ -92,21 +99,22 @@ class ExercisesFragment : Fragment() {
         model.timer?.cancel()
         if (exercise.time.startsWith("x") || exercise.time.isEmpty()) {
             binding.tvTime.text = exercise.time
-
+            binding.progressBar.max = 1
+            binding.progressBar.progress = 1
         } else {
-            binding.progressBar.max= exercise.time.toInt()*1000
+            binding.progressBar.max = exercise.time.toInt() * 1000
             model.startTimer(exercise.time.toLong())
         }
     }
 
-    private fun setMainColors( isExercise: Boolean) = with(binding){
+    private fun setMainColors(isExercise: Boolean) = with(binding) {
 
-        val white= ContextCompat.getColor(requireContext(), R.color.white)
-        val salat= ContextCompat.getColor(requireContext(), R.color.salatoviy)
+        val white = ContextCompat.getColor(requireContext(), R.color.white)
+        val salat = ContextCompat.getColor(requireContext(), R.color.salatoviy)
         val largeSize = 34.0f
         val smallSize = 20.0f
 
-        if(isExercise){
+        if (isExercise) {
 
             tvName.setTextColor(salat)
             tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP, largeSize)
@@ -128,9 +136,9 @@ class ExercisesFragment : Fragment() {
     }
 
     private fun animProgressBar(restTime: Long) {
-        val progressTo= if (restTime > 1000){
-            restTime -1000
-        } else{
+        val progressTo = if (restTime > 1000) {
+            restTime - 1000
+        } else {
             0
         }
         val anim = ObjectAnimator.ofInt(

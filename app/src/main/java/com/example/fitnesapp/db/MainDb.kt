@@ -9,10 +9,10 @@ import androidx.room.RoomDatabase
         ExercisesModel::class,
         WeightModel::class,
         StatisticModel::class
-               ],
+    ],
     version = 1
 )
-abstract class MainDb: RoomDatabase() {
+abstract class MainDb : RoomDatabase() {
 
     abstract val daysDao: DaysDao
     abstract val exerciseDao: ExerciseDao
