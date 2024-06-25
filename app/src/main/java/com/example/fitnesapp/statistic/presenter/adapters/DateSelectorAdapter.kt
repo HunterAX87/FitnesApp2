@@ -28,6 +28,7 @@ class DateSelectorAdapter(private val listener: Listener) :
                 itemMonth.setBackgroundResource(R.drawable.date_not_selected)
             }
 
+
             itemMonth.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
