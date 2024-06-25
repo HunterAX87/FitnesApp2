@@ -11,6 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.DayFinishBinding
+import com.example.fitnesapp.utils.Constants.CONST_0_0F
+import com.example.fitnesapp.utils.Constants.CONST_0_6F
+import com.example.fitnesapp.utils.Constants.CONST_0_7F
+import com.example.fitnesapp.utils.Constants.CONST_1_0F
 
 
 class DayFinishFragment : Fragment() {
@@ -30,22 +34,22 @@ class DayFinishFragment : Fragment() {
 
         binding.apply {
 
-            congratAnim.setMinProgress(0.0f)
-            congratAnim.setMaxProgress(1.0f)
+            congratAnim.setMinProgress(CONST_0_0F)
+            congratAnim.setMaxProgress(CONST_1_0F)
             congratAnim.repeatCount = ValueAnimator.INFINITE
             congratAnim.repeatMode = LottieDrawable.RESTART
             congratAnim.playAnimation()
-            congratAnim.speed = 0.6f
+            congratAnim.speed = CONST_0_6F
 
 
 
             congratAnim2.visibility = View.VISIBLE
-            congratAnim2.setMinProgress(0.0f)
-            congratAnim2.setMaxProgress(1.0f)
+            congratAnim2.setMinProgress(CONST_0_0F)
+            congratAnim2.setMaxProgress(CONST_1_0F)
             congratAnim2.repeatCount = ValueAnimator.INFINITE
             congratAnim2.repeatMode = LottieDrawable.RESTART
             congratAnim2.playAnimation()
-            congratAnim2.speed = 0.7f
+            congratAnim2.speed = CONST_0_7F
 
             bDone.setOnClickListener {
                 findNavController().popBackStack(

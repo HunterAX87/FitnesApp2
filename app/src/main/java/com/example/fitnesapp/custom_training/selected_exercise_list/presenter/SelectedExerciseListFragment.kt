@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.FragmentSelectedExerciseListBinding
 import com.example.fitnesapp.db.ExercisesModel
+import com.example.fitnesapp.utils.Constants.CONST_10F
+import com.example.fitnesapp.utils.Constants.CONST_128
+import com.example.fitnesapp.utils.Constants.CONST_28F
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Collections
 
@@ -131,13 +134,13 @@ class SelectedExerciseListFragment : Fragment(), SelectedListExerciseAdapter.Lis
                 val color = Color.RED // Измените цвет на ваш предпочтительный
                 val paint = Paint()
                 paint.color = color
-                paint.alpha = 128 // Регулируйте прозрачность
-                val radius = 28f // Установите желаемый радиус
+                paint.alpha = CONST_128 // Регулируйте прозрачность
+                val radius = CONST_28F // Установите желаемый радиус
                 val rect = RectF(
                     viewHolder.itemView.left.toFloat(),
-                    viewHolder.itemView.top.toFloat() + 10f, // Отключаем прорисовку на top
+                    viewHolder.itemView.top.toFloat() + CONST_10F, // Отключаем прорисовку на top
                     viewHolder.itemView.right.toFloat(),
-                    viewHolder.itemView.bottom.toFloat() - 10f // Отключаем прорисовку на bottom
+                    viewHolder.itemView.bottom.toFloat() - CONST_10F // Отключаем прорисовку на bottom
                 )
                 c.drawRoundRect(rect, radius, radius, paint)
             }

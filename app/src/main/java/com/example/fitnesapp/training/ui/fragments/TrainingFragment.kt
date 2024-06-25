@@ -14,6 +14,10 @@ import com.example.fitnesapp.databinding.FragmentTrainingBinding
 import com.example.fitnesapp.training.ui.DaysViewModel
 import com.example.fitnesapp.training.ui.adapters.VpAdapter
 import com.example.fitnesapp.training.utils.TrainingUtils
+import com.example.fitnesapp.utils.Constants.CONST_0_8F
+import com.example.fitnesapp.utils.Constants.CONST_1000
+import com.example.fitnesapp.utils.Constants.CONST_1_0F
+import com.example.fitnesapp.utils.Constants.CONST_700
 import com.google.android.material.tabs.TabLayoutMediator
 
 class TrainingFragment : Fragment() {
@@ -68,12 +72,12 @@ class TrainingFragment : Fragment() {
 
     private fun topCardObserver() = with(binding) {
         model.topCardUpdate.observe(viewLifecycleOwner) { card ->
-            val alphaAnimation = AlphaAnimation(0.8f, 1.0f)
-            alphaAnimation.duration = 700
+            val alphaAnimation = AlphaAnimation(CONST_0_8F, CONST_1_0F)
+            alphaAnimation.duration = CONST_700
             imageView.setImageResource(card.imageId)
             imageView.startAnimation(alphaAnimation)
             difficultyTitle.setText(card.difficultyTitle)
-            pB.max = card.maxProgress * 1000
+            pB.max = card.maxProgress * CONST_1000
             animProgressBar(card.progress)
             val daysRestText = getString(R.string.rest) + " " + (card.maxProgress - card.progress)
             tvRestDays.text = daysRestText
@@ -86,9 +90,9 @@ class TrainingFragment : Fragment() {
             binding.pB,
             "progress",
             binding.pB.progress,
-            progress * 1000
+            progress * CONST_1000
         )
-        anim.duration = 700
+        anim.duration = CONST_700
         anim.start()
     }
 }

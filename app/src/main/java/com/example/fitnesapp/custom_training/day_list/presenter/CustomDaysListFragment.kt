@@ -18,6 +18,9 @@ import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.FragmentCustomDaysListBinding
 import com.example.fitnesapp.db.DayModel
 import com.example.fitnesapp.training.utils.TrainingUtils
+import com.example.fitnesapp.utils.Constants.CONST_10F
+import com.example.fitnesapp.utils.Constants.CONST_128
+import com.example.fitnesapp.utils.Constants.CONST_35F
 import com.example.fitnesapp.utils.DialogManager
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Collections
@@ -139,13 +142,13 @@ class CustomDaysListFragment : Fragment(), CustomDaysAdapter.Listener {
                 val color = Color.RED // Измените цвет на ваш предпочтительный
                 val paint = Paint()
                 paint.color = color
-                paint.alpha = 128 // Регулируйте прозрачность
-                val radius = 35f // Установите желаемый радиус
+                paint.alpha = CONST_128 // Регулируйте прозрачность
+                val radius = CONST_35F // Установите желаемый радиус
                 val rect = RectF(
                     viewHolder.itemView.left.toFloat(),
-                    viewHolder.itemView.top.toFloat() + 10f, // Отключаем прорисовку на top
+                    viewHolder.itemView.top.toFloat() + CONST_10F, // Отключаем прорисовку на top
                     viewHolder.itemView.right.toFloat(),
-                    viewHolder.itemView.bottom.toFloat() - 10f // Отключаем прорисовку на bottom
+                    viewHolder.itemView.bottom.toFloat() - CONST_10F // Отключаем прорисовку на bottom
                 )
                 c.drawRoundRect(rect, radius, radius, paint)
             }

@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/date" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvTimeCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TIME"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toTopOf="@+id/time" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvKcalCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="KCAL"
@@ -86,11 +86,11 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeCount">
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -112,7 +112,7 @@
             app:headerColor="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistory"
             app:selectionColor="@color/red"
             app:selectionLabelColor="@color/kislotniy"
             app:todayLabelColor="@color/salatoviy" />
@@ -132,7 +132,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cView"></LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -140,7 +140,7 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintStart_toStartOf="@+id/tvHistory"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <ImageButton
@@ -152,7 +152,7 @@
             android:background="@null"
             android:src="@drawable/edit_weight"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintTop_toTopOf="@+id/tvWeight" />
 
         <include
             android:id="@+id/dateWeightSelector"
@@ -162,7 +162,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"

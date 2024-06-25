@@ -16,6 +16,15 @@ import com.example.fitnesapp.databinding.ExercisesListFragmentBinding
 import com.example.fitnesapp.db.DayModel
 import com.example.fitnesapp.exercises.ui.ExerciseListViewModel
 import com.example.fitnesapp.getDayFromArgument
+import com.example.fitnesapp.utils.Constants.CONST_0_0F
+import com.example.fitnesapp.utils.Constants.CONST_0_8F
+import com.example.fitnesapp.utils.Constants.CONST_1000
+import com.example.fitnesapp.utils.Constants.CONST_1_0F
+import com.example.fitnesapp.utils.Constants.CONST_300
+import com.example.fitnesapp.utils.Constants.CONST_600
+import com.example.fitnesapp.utils.Constants.CONST_700
+import com.example.fitnesapp.utils.Constants.CONST_800
+import com.example.fitnesapp.utils.Constants.CONST_900
 
 
 class ExercisesListFragment : Fragment() {
@@ -71,22 +80,22 @@ class ExercisesListFragment : Fragment() {
         model.topCardUpdate.observe(viewLifecycleOwner) { card ->
             binding.apply {
 
-                val alphaAnimation = AlphaAnimation(0.8f, 1.0f)
-                alphaAnimation.duration = 700
+                val alphaAnimation = AlphaAnimation(CONST_0_8F, CONST_1_0F)
+                alphaAnimation.duration = CONST_700
                 imageView.startAnimation(alphaAnimation)
                 imageView.setImageResource(card.imageId)
                 difficultyTitle.setText(card.difficultyTitle)
 
-                val alphaAnimationText = AlphaAnimation(0.0f, 1.0f)
-                alphaAnimationText.startOffset = 300
-                alphaAnimationText.duration = 800
+                val alphaAnimationText = AlphaAnimation(CONST_0_0F, CONST_1_0F)
+                alphaAnimationText.startOffset = CONST_300
+                alphaAnimationText.duration = CONST_800
                 difficultyTitle.setText(card.difficultyTitle)
                 difficultyTitle.visibility = View.VISIBLE
                 difficultyTitle.startAnimation(alphaAnimationText)
 
-                val alphaAnimationText2 = AlphaAnimation(0.0f, 1.0f)
-                alphaAnimationText2.startOffset = 600
-                alphaAnimationText2.duration = 800
+                val alphaAnimationText2 = AlphaAnimation(CONST_0_0F, CONST_1_0F)
+                alphaAnimationText2.startOffset = CONST_600
+                alphaAnimationText2.duration = CONST_800
                 val daysRest = card.maxProgress - card.progress
                 val tvRestText = getString(R.string.rest) + " " + daysRest
                 tvRestDays.text = if (daysRest == 0) {
@@ -97,7 +106,7 @@ class ExercisesListFragment : Fragment() {
                 tvRestDays.visibility = View.VISIBLE
                 tvRestDays.startAnimation(alphaAnimationText2)
 
-                pB.max = card.maxProgress * 1000
+                pB.max = card.maxProgress * CONST_1000
                 animProgressBar(card.progress)
 
             }
@@ -109,10 +118,10 @@ class ExercisesListFragment : Fragment() {
             binding.pB,
             "progress",
             binding.pB.progress,
-            progress * 1000
+            progress * CONST_1000
         )
-        anim.startDelay = 900
-        anim.duration = 700
+        anim.startDelay = CONST_900
+        anim.duration = CONST_700
         anim.start()
     }
 

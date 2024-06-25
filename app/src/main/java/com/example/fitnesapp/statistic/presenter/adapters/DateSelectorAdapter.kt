@@ -18,17 +18,17 @@ class DateSelectorAdapter(private val listener: Listener) :
         private val binding = DateSelectedListItemBinding.bind(view)
 
         fun bind(dateSelectorModel: DateSelectorModel) = with(binding) {
-            item.text = dateSelectorModel.text
+            itemMonth.text = dateSelectorModel.text
 
             if (dateSelectorModel.isSelected) {
-                item.setTextColor(Color.WHITE)
-                item.setBackgroundResource(R.drawable.date_selected)
+                itemMonth.setTextColor(Color.WHITE)
+                itemMonth.setBackgroundResource(R.drawable.date_selected)
             } else {
-                item.setTextColor(Color.BLACK)
-                item.setBackgroundResource(R.drawable.date_not_selected)
+                itemMonth.setTextColor(Color.BLACK)
+                itemMonth.setBackgroundResource(R.drawable.date_not_selected)
             }
 
-            item.setOnClickListener {
+            itemMonth.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
         }

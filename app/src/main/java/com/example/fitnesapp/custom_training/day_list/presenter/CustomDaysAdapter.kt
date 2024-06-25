@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.CustomDaysListItemBinding
 import com.example.fitnesapp.db.DayModel
+import com.example.fitnesapp.utils.Constants.CONST_100
 
 class CustomDaysAdapter(var listener: Listener) :
     ListAdapter<DayModel, CustomDaysAdapter.DayHolder>(MyComparator()) {
@@ -49,7 +50,7 @@ class CustomDaysAdapter(var listener: Listener) :
                 "$totalExercises " +
                         context.getString(R.string.exercises) +
                         " | ${context.getString(R.string.progress)} " +
-                        ((day.doneExerciseCounter * 100) / totalExercises) +
+                        ((day.doneExerciseCounter * CONST_100) / totalExercises) +
                         "%"
             }
         }

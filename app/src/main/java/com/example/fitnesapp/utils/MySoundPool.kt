@@ -4,6 +4,8 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import com.example.fitnesapp.R
+import com.example.fitnesapp.utils.Constants.CONST_1
+import com.example.fitnesapp.utils.Constants.CONST_1_0F
 
 class MySoundPool(private val context: Context) {
     private var soundPool: SoundPool? = null
@@ -30,11 +32,11 @@ class MySoundPool(private val context: Context) {
     fun playSound() {
         soundPool?.play(
             finishSoundId,
-            1.0f,
-            1.0f,
-            1,
+            CONST_1_0F,
+            CONST_1_0F,
+            CONST_1,
             0,
-            1.0f
+            CONST_1_0F
         )
     }
 }

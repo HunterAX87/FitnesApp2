@@ -19,8 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class ChooseExercisesFragment : Fragment(), ChooseExercisesAdapter.Listener {
     private var newExercises = ""
     private lateinit var adapter: ChooseExercisesAdapter
-    private var binding: FragmentChooseExercisesBinding? = null
-    private val _binding get() = binding!!
+    private lateinit var binding: FragmentChooseExercisesBinding
+    private val _binding get() = binding
     private val model: ChooseExerciseViewModel by viewModels()
 
     override fun onCreateView(
@@ -69,10 +69,7 @@ class ChooseExercisesFragment : Fragment(), ChooseExercisesAdapter.Listener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
+
 
     override fun onClick(exercise: ExercisesModel) {
         if (exercise.id != -1) {

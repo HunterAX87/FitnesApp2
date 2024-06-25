@@ -1,7 +1,9 @@
 package com.example.fitnesapp.exercises.ui.fragments
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import com.example.fitnesapp.R
 import com.example.fitnesapp.db.ExercisesModel
 import com.example.fitnesapp.databinding.ExerciseBinding
 import com.example.fitnesapp.db.DayModel
+import com.example.fitnesapp.exercises.utils.ForegroundService
 import com.example.fitnesapp.getDayFromArgument
 import com.example.fitnesapp.utils.TimeUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,6 +54,8 @@ class ExercisesFragment : Fragment() {
                 findNavController().navigate(
                     R.id.action_exercisesFragment_to_dayFinishFragment
                 )
+                model.onPauseTimer()
+                stopService()
             } else {
                 model.nextExercise()
             }
@@ -61,6 +66,8 @@ class ExercisesFragment : Fragment() {
                 R.id.exercisesListFragment,
                 inclusive = false
             )
+            model.onPauseTimer()
+            stopService()
         }
     }
 
@@ -71,15 +78,20 @@ class ExercisesFragment : Fragment() {
     }
 
     private fun updataExercise() = with(binding) {
-        model.updataExercise.observe(viewLifecycleOwner) {
-            imMain.setImageDrawable(GifDrawable(root.context.assets, it.image))
-            tvName.text = it.name
-            subTitle.text = it.subTitle
+        model.updataExercise.observe(viewLifecycleOwner) { ex->
+            stopService()
+            imMain.setImageDrawable(GifDrawable(root.context.assets, ex.image))
+            tvName.text = ex.name
+            subTitle.text = ex.subTitle
             setMainColors(
                 subTitle.text.toString().startsWith("Start")
             )
-            changeBottonText(it.name)
-            showTime(it)
+            changeBottonText(ex.name)
+            showTime(ex)
+            model.updataTime.observe(viewLifecycleOwner) { time->
+                val notificationTxt = "${ex.subTitle}  ${ex.name} \n${TimeUtils.getTime(time)}"
+                startService(notificationTxt)
+            }
         }
     }
 
@@ -151,8 +163,21 @@ class ExercisesFragment : Fragment() {
         anim.start()
     }
 
-    override fun onPause() {
-        super.onPause()
-        model.onPauseTimer()
+    fun startService(txt: String) {
+        val serviceIntent = Intent(requireContext(), ForegroundService::class.java)
+        serviceIntent.putExtra("intentExtra", txt)
+        ContextCompat.startForegroundService(requireContext(), serviceIntent)
+        Log.d("MyLog", "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     }
+
+
+    fun stopService() {
+        val serviceIntent = Intent(requireContext(), ForegroundService::class.java)
+        requireContext().stopService(serviceIntent)
+    }
+
+//    override fun onPause() {
+//        super.onPause()
+//        model.onPauseTimer()
+//    }
 }

@@ -16,6 +16,10 @@ import com.example.fitnesapp.db.WeightModel
 import com.example.fitnesapp.statistic.data.DateSelectorModel
 import com.example.fitnesapp.statistic.presenter.adapters.DateSelectorAdapter
 import com.example.fitnesapp.statistic.utils.UtilsArray
+import com.example.fitnesapp.utils.Constants.CONST_0F
+import com.example.fitnesapp.utils.Constants.CONST_10
+import com.example.fitnesapp.utils.Constants.CONST_1000
+import com.example.fitnesapp.utils.Constants.CONST_10F
 import com.example.fitnesapp.utils.DialogManager
 import com.example.fitnesapp.utils.TimeUtils
 import com.github.mikephil.charting.components.Legend
@@ -154,7 +158,7 @@ class StatisticFragment : Fragment(), OnChartValueSelectedListener {
         model.statisticData.observe(viewLifecycleOwner) {
             binding.apply {
                 time.text = TimeUtils.getWorkautTime(
-                    it.workautTime.toLong() * 1000
+                    it.workautTime.toLong() * CONST_1000
                 )
                 kcal.text = it.kcal.toString()
                 date.text = if (TimeUtils.getCurrentDate() == it.date) {
@@ -198,7 +202,7 @@ class StatisticFragment : Fragment(), OnChartValueSelectedListener {
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(set)
             val barData = BarData(dataSets)
-            barData.setValueTextSize(10f)
+            barData.setValueTextSize(CONST_10F)
             barChart.data = barData
 
         }
@@ -213,14 +217,14 @@ class StatisticFragment : Fragment(), OnChartValueSelectedListener {
             horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
             textColor = Color.WHITE
         }
-        barChart.axisLeft.axisMinimum = 0f
-        barChart.axisRight.axisMinimum = 0f
+        barChart.axisLeft.axisMinimum = CONST_0F
+        barChart.axisRight.axisMinimum = CONST_0F
         barChart.xAxis.textColor = Color.WHITE
         barChart.axisLeft.textColor = Color.WHITE
         barChart.axisRight.isEnabled = false
         barChart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
-            labelCount = 10
+            labelCount = CONST_10
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     return (value + 1).toInt().toString()

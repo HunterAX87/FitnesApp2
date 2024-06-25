@@ -180,15 +180,17 @@ class ExerciseViewModel @Inject constructor(
         timer?.cancel()
         tts.stop()
         isDayDone()
-        updateDay(
-            currentDay!!.copy(
-                doneExerciseCounter = if (doneExerciseCounterToSave > 0) {
-                    doneExerciseCounterToSave - 1
-                } else {
-                    0
-                }
+        currentDay?.let {
+            updateDay(
+                it.copy(
+                    doneExerciseCounter = if (doneExerciseCounterToSave > 0) {
+                        doneExerciseCounterToSave - 1
+                    } else {
+                        0
+                    }
+                )
             )
-        )
+        }
         viewModelScope.launch {
             mainDb.statisticDao.insertDayStatistic(createStatistic())
         }

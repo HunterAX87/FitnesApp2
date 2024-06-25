@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.SelectedExerciseListItemBinding
 import com.example.fitnesapp.db.ExercisesModel
+import com.example.fitnesapp.utils.Constants.CONST_1000
 import com.example.fitnesapp.utils.TimeUtils
 import pl.droidsonroids.gif.GifDrawable
 
@@ -31,7 +32,7 @@ class SelectedListExerciseAdapter(private val listener: Listener) :
             return if (time.startsWith("x")) {
                 time
             } else {
-                TimeUtils.getTime(time.toLong() * 1000)
+                TimeUtils.getTime(time.toLong() * CONST_1000)
             }
         }
     }

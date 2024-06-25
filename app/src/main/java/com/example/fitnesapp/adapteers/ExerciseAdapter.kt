@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesapp.R
 import com.example.fitnesapp.databinding.ExerciseListItemBinding
 import com.example.fitnesapp.db.ExercisesModel
+import com.example.fitnesapp.utils.Constants.CONST_100
 import com.example.fitnesapp.utils.TimeUtils
 import pl.droidsonroids.gif.GifDrawable
-class ExerciseAdapter() :
+class ExerciseAdapter :
     ListAdapter<ExercisesModel, ExerciseAdapter.ExerciseHolder>(MyComparator()) {
 
     class ExerciseHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,7 +29,7 @@ class ExerciseAdapter() :
             return if (time.startsWith("x")) {
                 time
             } else {
-                TimeUtils.getTime(time.toLong() * 1000)
+                TimeUtils.getTime(time.toLong() * CONST_100)
             }
         }
     }

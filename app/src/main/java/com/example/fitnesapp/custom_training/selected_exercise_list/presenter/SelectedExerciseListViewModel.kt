@@ -21,23 +21,27 @@ class SelectedExercisesListViewModel @Inject constructor(
     fun getExercises(id: Int) = viewModelScope.launch {
         dayModel = mainDb.daysDao.getDayById(id)
         val exerciseList = mainDb.exerciseDao.getAllExercises()
-        listExercisesData.value = exerciseHelper
-            .getExercisesOfTheDay(
-                dayModel?.exercises!!,
-                exerciseList
-            )
+        listExercisesData.value = dayModel?.exercises?.let {
+            exerciseHelper
+                .getExercisesOfTheDay(
+                    it,
+                    exerciseList
+                )
+        }
     }
 
     fun updateDay(exercises: String) = viewModelScope.launch {
         // ",12,12,13,13"
         val tempExercises = exercises.replaceFirst(",", "")
         // "12,12,13,13"
-        mainDb.daysDao.insertDay(
-            dayModel?.copy(
-                doneExerciseCounter = 0,
-                isDone = false,
-                exercises = tempExercises
-            )!!
-        )
+        dayModel?.copy(
+            doneExerciseCounter = 0,
+            isDone = false,
+            exercises = tempExercises
+        )?.let {
+            mainDb.daysDao.insertDay(
+                it
+            )
+        }
     }
 }

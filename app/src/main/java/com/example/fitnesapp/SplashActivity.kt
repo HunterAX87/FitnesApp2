@@ -7,6 +7,11 @@ import android.os.CountDownTimer
 import android.view.View
 import com.airbnb.lottie.LottieDrawable
 import com.example.fitnesapp.databinding.ActivitySplashBinding
+import com.example.fitnesapp.utils.Constants.CONST_0_0F
+import com.example.fitnesapp.utils.Constants.CONST_1000L
+import com.example.fitnesapp.utils.Constants.CONST_1_0F
+import com.example.fitnesapp.utils.Constants.CONST_1_5F
+import com.example.fitnesapp.utils.Constants.CONST_7000
 
 
 @SuppressLint("CustomSplashScreen")
@@ -20,16 +25,16 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            splashAnim1.setMinProgress(0.0f)
-            splashAnim1.setMaxProgress(1.0f)
+            splashAnim1.setMinProgress(CONST_0_0F)
+            splashAnim1.setMaxProgress(CONST_1_0F)
             splashAnim1.repeatCount = 0
             splashAnim1.repeatMode = LottieDrawable.REVERSE
             splashAnim1.playAnimation()
-            splashAnim1.speed = 1.5f
+            splashAnim1.speed = CONST_1_5F
         }
 
 
-        timer = object : CountDownTimer(7000, 1000) {
+        timer = object : CountDownTimer(CONST_7000, CONST_1000L) {
             override fun onTick(millisUntilFinished: Long) {
             }
 
